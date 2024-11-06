@@ -1,0 +1,75 @@
+
+Creating a simple project in Linux to check the day of the week for a given date can be done using a shell script. Below is a step-by-step guide to create this project.
+
+Step 1: Open the Terminal
+Open your terminal application in your Linux environment.
+
+Step 2: Create a New Directory for Your Project
+You can create a new directory to keep your project organized. Use the following command:
+
+bash
+Copy code
+mkdir check_day_project
+cd check_day_project
+Step 3: Create a Shell Script
+Create a new shell script file named check_day.sh:
+
+bash
+Copy code
+touch check_day.sh
+chmod +x check_day.sh
+Step 4: Edit the Script
+Open the script with a text editor (like nano or vim):
+
+bash
+Copy code
+nano check_day.sh
+Step 5: Write the Script
+Here’s a simple script to check the day of the week for a given date:
+
+bash
+Copy code
+#!/bin/bash
+
+# Function to check the day of the week for a given date
+check_day() {
+    date_input="$1"
+
+    # Check if the date is valid
+    if ! date -d "$date_input" >/dev/null 2>&1; then
+        echo "Invalid date format. Please use YYYY-MM-DD."
+        exit 1
+    fi
+
+    # Get the day of the week
+    day_of_week=$(date -d "$date_input" '+%A')
+    echo "The day of the week for $date_input is: $day_of_week"
+}
+
+# Main script execution
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 YYYY-MM-DD"
+    exit 1
+fi
+
+check_day "$1"
+Step 6: Save and Exit
+If you’re using nano, press CTRL + X, then Y, and Enter to save and exit.
+
+Step 7: Run the Script
+You can now run your script by providing a date as an argument. For example:
+
+bash
+Copy code
+./check_day.sh 2024-10-28
+Output
+The output will show you the day of the week for the provided date:
+
+csharp
+Copy code
+The day of the week for 2024-10-28 is: Monday
+Additional Notes
+Ensure that you have permission to execute the script (the chmod +x command).
+The script uses the date command, which is typically available in most Linux distributions.
+Modify the date format in the check_day function if you prefer a different format.
+Feel free to expand the project by adding more features, such as accepting multiple dates or displaying additional information about the
